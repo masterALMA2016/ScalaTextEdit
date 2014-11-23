@@ -5,6 +5,6 @@ package org.alma.genielogiciel.scalatextedit
  */
 abstract class Cursor {
 
-
+  def update(w :Workspace) : Unit
 
 }

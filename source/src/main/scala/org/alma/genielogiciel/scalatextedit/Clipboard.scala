@@ -7,7 +7,7 @@ class Clipboard extends Buffer[String] {
 
   def run(command : String): Unit = {
     current = command
-    history :+= command
+    history += command
     println(current)
   }
 

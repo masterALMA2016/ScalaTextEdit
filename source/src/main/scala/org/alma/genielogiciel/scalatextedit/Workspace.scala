@@ -1,17 +1,33 @@
 package org.alma.genielogiciel.scalatextedit
 
+import org.alma.genielogiciel.scalatextedit.command.{ObservableCommand, InitializeCommand, Command}
+
 /**
  * Created by Maxime on 10/11/14.
  */
-class Workspace extends Buffer[Command] {
-  private def clipboad = new Clipboard
+class Workspace extends Buffer[Command] with Observable[Workspace]{
+  private def clipboad = null
 
-  var cursor : Cursor = new SimpleCursor(0)
+  var cursor : Cursor = null
+
+  {
+    var init = new InitializeCommand
+    init.execute(this)
+    history += init
+    this.addObserver(new UI)
+  }
 
   def run(command : Command): Unit = {
-    current = command.execute(cursor, this)
-    history :+= command
-    println(current)
+    command.execute(this)
+    if (command.isInstanceOf[ObservableCommand])
+      this.notifyObservers()
+    history += command
+    updateCursor()
   }
+
+  def updateCursor(): Unit = {
+    cursor.update(this)
+  }
+
 
 }
