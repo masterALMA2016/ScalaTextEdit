@@ -7,8 +7,6 @@ import org.alma.genielogiciel.scalatextedit.Workspace
  */
 trait Command {
 
-  var isRun = true
-
   def execute(w : Workspace): Unit
 
 }

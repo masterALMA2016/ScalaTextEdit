@@ -11,7 +11,7 @@ class RedoCommand(var redoNext : Int) extends Command with ObservableCommand{
   }
 
   def execute(w: Workspace): Unit = {
-    if (!w.history(w.history.length-1).isInstanceOf[RedoCommand] && !w.history(w.history.length-1).isInstanceOf[CancelCommand])
+    /*if (!w.history(w.history.length-1).isInstanceOf[RedoCommand] && !w.history(w.history.length-1).isInstanceOf[CancelCommand])
       throw new CommandException("Impossible de faire un redo, cette fonction est possible après une commande d'annulation ou de redo")
     var start = 0
     for ( a <- 0 until w.history.length) {
@@ -29,6 +29,6 @@ class RedoCommand(var redoNext : Int) extends Command with ObservableCommand{
       if(command.isRun && !command.isInstanceOf[CancelCommand] && !command.isInstanceOf[RedoCommand]) {
         command.execute(w)
       }
-    }
+    }*/
   }
 }

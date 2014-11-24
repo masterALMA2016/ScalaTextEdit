@@ -6,7 +6,7 @@ import org.alma.genielogiciel.scalatextedit.command.{ObservableCommand, Initiali
  * Created by Maxime on 10/11/14.
  */
 class Workspace extends Buffer[Command] with Observable[Workspace]{
-  private def clipboad = null
+  var clipboad = new Clipboard
 
   var cursor : Cursor = null
 
@@ -22,11 +22,12 @@ class Workspace extends Buffer[Command] with Observable[Workspace]{
     if (command.isInstanceOf[ObservableCommand])
       this.notifyObservers()
     history += command
-    updateCursor()
   }
 
-  def updateCursor(): Unit = {
-    cursor.update(this)
+  def executeAll(): Unit = {
+    for (command <- this.history) {
+        command.execute(this)
+    }
   }
 
 
