@@ -5,7 +5,7 @@ import org.alma.genielogiciel.scalatextedit.{SelectionCursor, SimpleCursor, Work
 /**
  * Created by Maxime on 22/11/14.
  */
-abstract class DefaultCommand extends CancellableCommand {
+abstract class DefaultCommand extends Command{
 
   def execute(w : Workspace): Unit = {
     w.cursor match {
