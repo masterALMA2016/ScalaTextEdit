@@ -1,6 +1,6 @@
 package org.alma.genielogiciel.scalatextedit
 
-import org.alma.genielogiciel.scalatextedit.command.{ObservableCommand, InitializeCommand, Command}
+import org.alma.genielogiciel.scalatextedit.command.{InitializeCommand, Command}
 
 /**
  * Created by Maxime on 10/11/14.
@@ -19,8 +19,7 @@ class Workspace extends Buffer[Command] with Observable[Workspace]{
 
   def run(command : Command): Unit = {
     command.execute(this)
-    if (command.isInstanceOf[ObservableCommand])
-      this.notifyObservers()
+    this.notifyObservers()
     history += command
   }
 

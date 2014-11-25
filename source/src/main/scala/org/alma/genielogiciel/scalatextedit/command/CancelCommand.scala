@@ -5,7 +5,7 @@ import org.alma.genielogiciel.scalatextedit.{CommandException, Workspace}
 /**
  * Created by Maxime on 22/11/14.
  */
-class CancelCommand(var cancelNext : Int) extends Command with ObservableCommand{
+class CancelCommand(var cancelNext : Int) extends Command {
 
   def this() {
     this(1)
@@ -16,11 +16,9 @@ class CancelCommand(var cancelNext : Int) extends Command with ObservableCommand
     for ( a <- 0 until w.history.length) {
       val id = w.history.length-t-a
       if (cancelNext > 0) {
-        if(w.history(id).isInstanceOf[UncancellableCommand])
-          throw new CommandException("Impossible de supprimer cette action ou bien il n'y a pas d'action à supprimer")
-        if(w.history(id).isInstanceOf[CancellableCommand])
-          cancelNext -= 1
+        w.history(id).remove()
         w.history.remove(id)
+        cancelNext -= 1
         t -= 1;
       }
     }

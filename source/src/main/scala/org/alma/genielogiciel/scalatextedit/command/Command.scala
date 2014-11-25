@@ -9,4 +9,6 @@ trait Command {
 
   def execute(w : Workspace): Unit
 
+  def remove(): Unit = {}
+
 }
