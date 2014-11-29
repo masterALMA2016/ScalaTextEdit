@@ -9,10 +9,12 @@ object App {
   
   def main(args : Array[String]) {
     val textEdit = new Workspace
+    textEdit.addObserver(new UI)
     textEdit.run(new WriteCommand("lol"))
     textEdit.run(new WriteCommand("."))
-    textEdit.run(new CancelCommand(2))
+    textEdit.run(new CancelCommand())
     textEdit.run(new WriteCommand("-"))
+    textEdit.run(new CancelCommand())
     textEdit.run(new WriteCommand("poijuythop"))
     textEdit.run(new SelectionCursorCommand(3,6))
     textEdit.run(new CutCommand)

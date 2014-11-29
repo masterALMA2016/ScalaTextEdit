@@ -5,7 +5,7 @@ import org.alma.genielogiciel.scalatextedit.{CommandException, Workspace}
 /**
  * Created by Maxime on 22/11/14.
  */
-class CancelCommand(var cancelNext : Int) extends Command {
+class CancelCommand(var cancelNext : Int) extends UncancelableCommand {
 
   def this() {
     this(1)
@@ -15,7 +15,7 @@ class CancelCommand(var cancelNext : Int) extends Command {
     var t = 1;
     for ( a <- 0 until w.history.length) {
       val id = w.history.length-t-a
-      if (cancelNext > 0) {
+      if (cancelNext > 0 && w.history(id).isCancelable) {
         w.history(id).remove()
         w.history.remove(id)
         cancelNext -= 1

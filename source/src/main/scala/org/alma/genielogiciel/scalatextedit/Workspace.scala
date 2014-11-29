@@ -1,6 +1,6 @@
 package org.alma.genielogiciel.scalatextedit
 
-import org.alma.genielogiciel.scalatextedit.command.{InitializeCommand, Command}
+import org.alma.genielogiciel.scalatextedit.command.{CancelCommand, InitializeCommand, Command}
 
 /**
  * Created by Maxime on 10/11/14.
@@ -14,7 +14,6 @@ class Workspace extends Buffer[Command] with Observable[Workspace]{
     var init = new InitializeCommand
     init.execute(this)
     history += init
-    this.addObserver(new UI)
   }
 
   def run(command : Command): Unit = {
@@ -25,6 +24,7 @@ class Workspace extends Buffer[Command] with Observable[Workspace]{
 
   def executeAll(): Unit = {
     for (command <- this.history) {
+      if(command.isCancelable)
         command.execute(this)
     }
   }
