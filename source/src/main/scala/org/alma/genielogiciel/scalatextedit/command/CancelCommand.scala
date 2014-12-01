@@ -5,7 +5,7 @@ import org.alma.genielogiciel.scalatextedit.{CommandException, Workspace}
 /**
  * Created by Maxime on 22/11/14.
  */
-class CancelCommand(var cancelNext : Int) extends UncancelableCommand {
+class CancelCommand(var cancelNext : Int) extends UncancelableCommand with UnrecordableCommand {
 
   def this() {
     this(1)

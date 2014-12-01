@@ -19,6 +19,7 @@ object App {
     textEdit.run(new SelectionCursorCommand(3,6))
     textEdit.run(new CutCommand)
     textEdit.run(new WriteCommand("--"))
+    textEdit.run(new CancelCommand())
     textEdit.run(new SimpleCursorCommand(0))
     textEdit.run(new PasteCommand)
     textEdit.run(new WriteCommand("*"))

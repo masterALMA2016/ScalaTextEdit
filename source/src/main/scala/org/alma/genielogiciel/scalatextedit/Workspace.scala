@@ -19,15 +19,14 @@ class Workspace extends Buffer[Command] with Observable[Workspace]{
   def run(command : Command): Unit = {
     command.execute(this)
     this.notifyObservers()
-    history += command
+    if(command.isRecordable)
+      history += command
   }
 
   def executeAll(): Unit = {
     for (command <- this.history) {
-      if(command.isCancelable)
         command.execute(this)
     }
   }
-
 
 }

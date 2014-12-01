@@ -11,6 +11,7 @@ trait Command {
 
   def remove(): Unit = {}
 
-  val isCancelable = true;
+  val isCancelable = true
+  val isRecordable = true
 
 }
