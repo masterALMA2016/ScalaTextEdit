@@ -2,3 +2,13 @@ ScalaTextEdit  [![Build Status](https://travis-ci.org/masterALMA2016/ScalaTextEd
 =============
 
 a simple text edit
+
+How to compile
+-------------
+
+Just compile and execute the project with maven.
+
+```
+mvn clean install
+mvn scala:run
+```
